@@ -7,6 +7,7 @@ library(topicmodels)
 library(wordcloud)
 library(RColorBrewer)
 library(ggplot2)
+library(tidytext)
 
 setwd("C://Users//Rafael//Dropbox//GitHub//Seinfeld//scripts")
 
@@ -73,12 +74,6 @@ wordcloud(corpus, max.words = 100, random.order = F, rot.per = .3, colors = brew
 dev.off()
 
 # Topics ----
-burnin <- 1000
-iter <- 2000
-thin <- 500
-seed <-list(2003,5,63,100001,765)
-nstart <- 5
-best <- TRUE
 
 # Number of topics
 k <- 5
@@ -87,12 +82,12 @@ k <- 5
 ldaOut <-LDA(dtm,
              k,
              method="Gibbs",
-             control=list(nstart=nstart,
-                          seed = seed,
-                          best=best,
-                          burnin = burnin,
-                          iter = iter,
-                          thin=thin))
+             control=list(nstart = 5,
+                          seed = list(2003, 5, 63, 100001, 765),
+                          best = T,
+                          burnin = 1000,
+                          iter = 2000,
+                          thin = 500))
 
 # Output
 ldaOut.topics <- as.matrix(topics(ldaOut))

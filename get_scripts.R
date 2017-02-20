@@ -1,5 +1,5 @@
 ## Getting the scripts ----
-## Rafael N. Magalhães
+# Rafael N. Magalhães
 
 # Load libraries
 library(rvest)
